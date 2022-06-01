@@ -6,10 +6,10 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/response")
 class ResponseApiController {
 
-    @GetMapping("/response")
+    @GetMapping
     fun getMapping(@RequestParam age: Int?): ResponseEntity<String> {
         return age?.let {
             if (it < 20) {
@@ -30,17 +30,17 @@ class ResponseApiController {
         */
     }
 
-    @PostMapping("/response")
+    @PostMapping
     fun postMapping(@RequestBody userRequest: UserRequest): ResponseEntity<Any> {
         return ResponseEntity.ok(userRequest)
     }
 
-    @PutMapping("/response")
+    @PutMapping
     fun putMapping(@RequestBody userRequest: UserRequest): ResponseEntity<Any> {
         return ResponseEntity.status(HttpStatus.CREATED).body(userRequest)
     }
 
-    @DeleteMapping("/response/{id}")
+    @DeleteMapping("/{id}")
     fun deleteMapping(@PathVariable id: Int): ResponseEntity<Any> {
         return ResponseEntity.internalServerError().body(null)
     }
