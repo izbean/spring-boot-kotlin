@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.BindingResult
 import org.springframework.validation.FieldError
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.*
 import java.time.LocalDateTime
@@ -18,18 +19,20 @@ import javax.validation.constraints.Size
 
 @RestController
 @RequestMapping("/api/exception")
+@Validated
 class ExceptionApiController {
 
     @GetMapping("/hello")
-    fun hello() {
+    fun hello(): String {
         val list = mutableListOf<String>()
-        val temp = list[0]
+//        val temp = list[0]
+        return "hello"
     }
 
     @GetMapping
     fun get(
         @NotBlank
-        @Size(min = 2, max = 4)
+        @Size(min = 2, max = 6)
         @RequestParam name: String,
 
         @Min(10)
